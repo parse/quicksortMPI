@@ -33,6 +33,7 @@ int main(int argc, char **argv) {
 
 		// Fill our buffer with test data
 		data = (int *)malloc((elements+2*slices-rest)*sizeof(int));
+
 		for (i = 0; i <= elements; i++) {
 			data[i] = (random() % 999 +1);
 		}
