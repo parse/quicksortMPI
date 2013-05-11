@@ -30,17 +30,6 @@ int main (int argc, char *argv[]) {
 
     // Start timer
     startTime = MPI_Wtime();
-
-    // Run on one processor, do only serial quicksort
-    if (nproc == 1) {
-      quickSort(data, 0, size);
-      endTime = MPI_Wtime();
-      printf("%f \n", endTime-startTime);
-      printf( validateSort(data, size) ? "Successfully sorted array\n" : "Failed sorting array\n");
-
-      MPI_Finalize();
-      return 0;
-    }
   }
 
   MPI_Scatter(data, chunk, MPI_DOUBLE, local_array, chunk, MPI_DOUBLE, 0, MPI_COMM_WORLD);  
@@ -211,6 +200,7 @@ double *quickSort_p (int level, MPI_Comm comm, double *local_array, int local_si
     *arrayLength = local_size;
     return quickSort_p(level+1, new_comm, new_local, local_size, arrayLength);
   } else {
+    *arrayLength = local_size;
     return local_array;
   }
 }
