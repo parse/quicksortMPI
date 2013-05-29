@@ -1,8 +1,13 @@
-//int *merge(int *v1, int left_size, int *v2, int right_size);
-int *merge(int a[], int m, int b[], int n);
-void quicksort(int *v, int left, int right);
-void swap(int *v, int i, int j);
-int main(int argc, char **argv);
+
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
-#define DEBUG 0
+void swap(double*, double*);
+int partition(double*, int, int, int);
+void quickSort(double*, int, int);
+double *quickSort_p(MPI_Comm comm, double *local_array, int local_size, int *arrayLength);
+
+void divide(int*, int*, double, double*, int);
+int validateSort(double *a, int size);
